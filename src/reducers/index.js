@@ -3,9 +3,9 @@ import { combineReducers } from 'redux'
 import counter from './counter'
 import user from './user'
 
-const rootStore = combineReducers({
+const rootReducer = combineReducers({
     counter,
     user
 })
 
-export default rootStore
+export default rootReducer

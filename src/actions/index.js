@@ -1,10 +1,16 @@
 import * as types from '../constants'
+
 export const increment = () => {
-    return {
-        type:types['INCREMENT']
+    return dispatch => {
+        setTimeout(() => {
+            dispatch({
+                type:types['INCREMENT']
+            })
+        },2000)
     }
 }
-export const decrement = () => {
+
+ export const decrement = () => {
     return {
         type:types['DECREMENT']
     }
