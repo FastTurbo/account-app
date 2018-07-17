@@ -2,6 +2,7 @@ import React,{ Component } from 'react'
 import { connect } from 'react-redux'
 import { increment,decrement} from "../actions";
 import { bindActionCreators } from 'redux'
+import User from './User'
 
 class App extends Component{
     render(){
@@ -12,6 +13,7 @@ class App extends Component{
                     <button className="btn btn-primary" onClick={() => this.props.increment()}>Increment</button>
                     <button className="btn btn-danger" onClick={() => this.props.decrement()}>Decrement</button>
                 </p>
+                <User/>
             </div>
         )
     }
