@@ -6,12 +6,16 @@ export const increment = () => {
             dispatch({
                 type:types['INCREMENT']
             })
-        },2000)
+        },1800)
     }
 }
 
- export const decrement = () => {
-    return {
-        type:types['DECREMENT']
+export const decrement = () => {
+    return dispatch => {
+        setTimeout(() => {
+            dispatch({
+                type:types['DECREMENT']
+            })
+        },2000)
     }
 }

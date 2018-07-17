@@ -5,3 +5,4 @@ const user = (state = 'abc', action = {}) => {
     }
 }
 
+export default user
