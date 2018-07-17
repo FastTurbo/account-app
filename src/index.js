@@ -2,15 +2,8 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
 import App from './components/App'
-import { createStore,applyMiddleware } from 'redux'
-import rootReducers from './reducers'
-import logger from 'redux-logger'
-import thunk from 'redux-thunk'
-import promise from 'redux-promise-middleware'
-import { composeWithDevTools } from 'redux-devtools-extension'
-
-
-const store = createStore(rootReducers,composeWithDevTools(applyMiddleware(logger,thunk,promise())))
+import configStore from './store/configStore'
+const store = configStore()
 
 ReactDOM.render(
     <Provider store={store}>
@@ -18,3 +11,14 @@ ReactDOM.render(
     </Provider>,
     document.getElementById('root')
 )
+
+if(module.hot){
+    module.hot.accept('./components/App',() => {
+        ReactDOM.render(
+            <Provider store={store}>
+                <App/>
+            </Provider>,
+            document.getElementById('root')
+        )
+    })
+}
