@@ -1,25 +1,26 @@
-import rootReducers from "../reducers";
 import {applyMiddleware, createStore} from "redux";
+import rootReducer from "../reducers";
 import promise from "redux-promise-middleware";
 import {composeWithDevTools} from "redux-devtools-extension";
 import logger from "redux-logger";
 import thunk from "redux-thunk";
 
-const configStore = preloadState => {
+const configureStore = preloadedState => {
     const store = createStore(
-        rootReducers,
-        preloadState,
-        composeWithDevTools(applyMiddleware(logger,thunk,promise()))
+        rootReducer,
+        preloadedState,
+        composeWithDevTools(applyMiddleware(logger, thunk, promise()))
     )
 
     if(process.env.NODE_ENV !== 'production'){
         if(module.hot){
             module.hot.accept('../reducers',() => {
-                store.replaceReducer(rootReducers)
+                store.replaceReducer(rootReducer)
             })
         }
     }
+
     return store
 }
 
-export default configStore
+export default configureStore

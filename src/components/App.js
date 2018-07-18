@@ -1,26 +1,7 @@
-import React,{ Component } from 'react'
+import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { increment,decrement} from "../actions";
-import { bindActionCreators } from 'redux'
+import { increment,decrement } from "../actions";
 import User from './User'
-
-class App extends Component{
-    render(){
-        return (
-            <div className="container">
-                <h1 className="text-center">{this.props.counter}</h1>
-                <p className="text-center">
-                    <button className="btn btn-primary" onClick={() => this.props.increment()}>Increment</button>
-                    <button className="btn btn-danger" onClick={() => this.props.decrement()}>Decrement</button>
-                </p>
-                <User/>
-            </div>
-        )
-    }
-}
-const mapDispatchToProps = dispatch => {
-    return bindActionCreators({increment,decrement},dispatch)
-}
 
 const mapStateToProps = state => {
     return {
@@ -28,4 +9,23 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps,mapDispatchToProps)(App)
+@connect(mapStateToProps,{ increment,decrement })
+class App extends Component {
+
+    render(){
+        const { increment,decrement } = this.props
+        const { counter } = this.props
+        return (
+            <div className="container text-center">
+                <h2>{ counter }</h2>
+                <p>
+                    <button className="btn btn-primary" onClick={() => increment()}>Increment</button>
+                    <button className="btn btn-danger" onClick={() => decrement()}>Decrement</button>
+                </p>
+                <User/>
+            </div>
+        )
+    }
+}
+
+export default App

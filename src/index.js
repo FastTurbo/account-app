@@ -2,11 +2,12 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
 import App from './components/App'
-import configStore from './store/configStore'
-const store = configStore()
+import configureStore from './store/configureStore'
+
+const store = configureStore()
 
 ReactDOM.render(
-    <Provider store={store}>
+    <Provider store={ store }>
         <App/>
     </Provider>,
     document.getElementById('root')
@@ -15,7 +16,7 @@ ReactDOM.render(
 if(module.hot){
     module.hot.accept('./components/App',() => {
         ReactDOM.render(
-            <Provider store={store}>
+            <Provider store={ store }>
                 <App/>
             </Provider>,
             document.getElementById('root')
